@@ -1,5 +1,5 @@
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.json.simple.JSONArray;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
@@ -181,7 +181,9 @@ class JsonCustomerInput implements CustomerInput {
 
         try {
             /** get input json file **/
-            File jsonFile = new File("C:\\Users\\A694009\\Documents\\Testing\\src\\main\\java\\inputFile.json");
+            File jsonFile = new File(args[0]);
+
+            //File jsonFile = new File("C:\\Users\\A694009\\Documents\\TrainCompany\\src\\main\\java\\inputFile.json");
             JSONObject jsonObject = (JSONObject) parser.parse(new FileReader(jsonFile));
 
             JSONArray name = (JSONArray) jsonObject.get("taps");
@@ -209,7 +211,8 @@ class JsonCustomerInput implements CustomerInput {
             customerSummary.setCustomerSummaries(customerListOutput);
 
             // Java objects to JSON file
-            mapper.writeValue(new File("src\\main\\java\\outputFile.json"), customerSummary);
+            //mapper.writeValue(new File("src\\main\\java\\outputFile.json"), customerSummary);
+            mapper.writeValue(new File(args[1]), customerSummary);
 
             // Java objects to JSON string - compact-print
             String jsonString = mapper.writeValueAsString(customerSummary);

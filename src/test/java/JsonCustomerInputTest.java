@@ -1,3 +1,7 @@
+import customerInformation.CustomerOutput;
+import customerInformation.CustomerOutputWithFullAttributes;
+import customerInformation.JsonCustomerInput;
+import customerInformation.Trip;
 import org.junit.Assert;
 import org.junit.Test;
 import org.powermock.reflect.Whitebox;
@@ -13,6 +17,9 @@ public class JsonCustomerInputTest {
 
     private JsonCustomerInput jsonCustomerInput = new JsonCustomerInput();
 
+    /**
+     * Test method for customerInformation.JsonCustomerInput#getZone(String).
+     */
     @Test
     public void testGetZone() throws Exception {
         String stationA = "A";
@@ -52,6 +59,9 @@ public class JsonCustomerInputTest {
         Assert.assertEquals(4, zoneI);
     }
 
+    /**
+     * Test method for customerInformation.JsonCustomerInput#getPricingPerTrip(int, int).
+     */
     @Test
     public void testGetPricingPerTrip() throws Exception {
         int pricingPerTrip1 =  Whitebox.invokeMethod(jsonCustomerInput, "getPricingPerTrip", 3, 1);
@@ -103,6 +113,9 @@ public class JsonCustomerInputTest {
         Assert.assertEquals(200, pricingPerTrip16);
     }
 
+    /**
+     * Test method for customerInformation.JsonCustomerInput#fillCustomerListOutput(int, int, List<Trip>, List<CustomerOutput>).
+     */
     @Test
     public void testFillCustomerListOutput() throws Exception {
         List<Trip> customerTrips = new ArrayList<Trip>();

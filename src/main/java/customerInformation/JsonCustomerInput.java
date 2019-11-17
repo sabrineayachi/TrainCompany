@@ -1,9 +1,12 @@
+package customerInformation;
+
 import org.json.simple.JSONArray;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
 import java.io.File;
+
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -15,7 +18,7 @@ import java.util.stream.Collectors;
  * @author <a href="mailto:sabrinee.ayachi@gmail.com">sayachi</a>
  * @since 10 nov. 2019
  */
-class JsonCustomerInput implements CustomerInput {
+public class JsonCustomerInput implements CustomerInput {
     private int  unixTimestamp;
 
     private int  customerId;
@@ -180,10 +183,13 @@ class JsonCustomerInput implements CustomerInput {
         List<CustomerOutput> customerListOutput = new ArrayList<>();
 
         try {
-            /** get input json file **/
-            File jsonFile = new File(args[0]);
+            /** get input json file from local project path or from java command line args **/
 
-            //File jsonFile = new File("C:\\Users\\A694009\\Documents\\TrainCompany\\src\\main\\java\\inputFile.json");
+            /**get input file from local project path **/
+            File jsonFile = new File("src\\main\\java\\inputFile.json");
+            /** get input file from java command line args
+            File jsonFile = new File(args[0]); **/
+
             JSONObject jsonObject = (JSONObject) parser.parse(new FileReader(jsonFile));
 
             JSONArray name = (JSONArray) jsonObject.get("taps");
@@ -211,10 +217,12 @@ class JsonCustomerInput implements CustomerInput {
             customerSummary.setCustomerSummaries(customerListOutput);
 
             // Java objects to JSON file
-            //mapper.writeValue(new File("src\\main\\java\\outputFile.json"), customerSummary);
-            mapper.writeValue(new File(args[1]), customerSummary);
+            /** output json file to local project path **/
+            mapper.writeValue(new File("src\\main\\java\\outputFile.json"), customerSummary);
+            /** output json file to java command line second argument
+            mapper.writeValue(new File(args[1]), customerSummary); **/
 
-            // Java objects to JSON string - compact-print
+            //Java objects to JSON string
             String jsonString = mapper.writeValueAsString(customerSummary);
         } catch (IOException e) {
             e.printStackTrace();

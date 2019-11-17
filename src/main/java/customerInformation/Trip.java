@@ -1,3 +1,5 @@
+package customerInformation;
+
 /**
  * @author <a href="mailto:sabrinee.ayachi@gmail.com">sayachi</a>
  * @since 10 nov. 2019
